@@ -1,0 +1,145 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bitcount+Prop+Double:wght@100..900&family=Cascadia+Mono:ital,wght@0,200..700;1,200..700&family=Dancing+Script:wght@400..700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+html{
+scroll-behavior:smooth;
+}
+
+.body--class{
+background:#d1c8a9;
+margin:0;
+font-family:"PT Serif";
+display:flex;
+flex-direction: column;
+justify-content: center;
+}
+
+/* HEADER */
+
+.header--body{
+width:100%;
+background:#111;
+}
+
+.ul--nav{
+display:flex;
+justify-content:center;
+gap:40px;
+padding:15px;
+margin:0;
+list-style:none;
+}
+
+.item--link{
+text-decoration:none;
+color:white;
+font-weight:bold;
+}
+
+/* MAIN */
+
+.main--content{
+position:relative;
+overflow:hidden;
+}
+
+/* BACKGROUND */
+
+.background{
+position:absolute;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-1;
+}
+
+.carousel-back{
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+.carousel-track-back{
+display:flex;
+flex-wrap:nowrap;
+}
+
+.carousel-track-back img{
+width:600px;
+flex-shrink:0;
+object-fit:cover;
+opacity:.35;
+}
+
+/* HERO */
+
+.hero{
+padding:120px 20px 80px 20px;
+text-align:center;
+}
+
+.box--main--title{
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.main--title{
+font-size:5rem;
+font-family:"Bebas Neue";
+background-image:linear-gradient(to top,#5a0500 40%,#d6c4a7 60%,#7d4d37 70%);
+background-clip:text;
+color:transparent;
+}
+
+.span--title{
+font-size:5rem;
+font-family:"Bebas Neue";
+color:#7d4d37;
+}
+
+/* INICIO */
+
+.inicio--part{
+max-width:900px;
+margin:auto;
+padding:40px 20px;
+text-align:center;
+}
+.wrw--part .section--title{
+    text-align: center;
+}
+/* GALERIA */
+
+.event--part{
+padding:40px;
+text-align:center;
+}
+
+.galeria--section{
+
+width:90%;
+margin:auto;
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(200px,1fr));
+
+grid-auto-rows:200px;
+
+gap:5px;
+}
+
+.galeria--section img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+
+}
+
+/* FOOTER */
+
+.footer{
+height:120px;
+}
