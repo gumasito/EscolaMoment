@@ -2,6 +2,7 @@
 
 html {
     cursor: none !important;
+    font-size: 16px;
 }
 
 * {
@@ -108,24 +109,111 @@ main {
 .music--container {
     user-select: none;
     margin: auto;
+    width: 100%;
+    height: auto;
+}
+
+.volume--container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+    background-color: #110102;
+    border-radius: 5px;
+    border: 1px solid #5f0510;
+    box-shadow: #5f0510 1px 1px 8px .4px;
+    padding: .3%;
+    max-width: 180px;
+    box-sizing: content-box;
+    object-fit: contain;
+    overflow: hidden;
+    height: auto;
+    max-height: 100vh;
+    position: fixed;
+    left: -180px;
+    top: 30%;
+    transition: all, .3s;
+    user-select: none;
+    pointer-events: none;
+}
+
+.volume--container.open {
+    left: 0;
+    user-select: all;
+    pointer-events: all;
+}
+
+.volume--container.open p {
+    user-select: none;
+}
+
+.volume--container input {
+    width: clamp(60px, 25vw, 180px)
+}
+
+#volume-slider {
+    appearance: none;
+    background-color: #5f0510;
+    height: 20px;
+    border-radius: 20px;
+    --thumb-image: url("");
+}
+
+#volume-slider::-webkit-slider-runnable-track {
+    border-radius: 20px;
+}
+
+#volume-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #cc3f41;
+    background-image: var(--thumb-image), url("/IMG/Decorate/disco9.png");
+    background-size: cover;
+    background-position: center;
+}
+
+#volume-slider.rotating::-webkit-slider-thumb {
+    animation: spin 7s linear infinite;
+}
+
+#volume-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border: none;
+    border-radius: 50%;
+}
+
+/*!Fin apartado volumen*/
+.music--content-visualizer {
+    width: 200px;
+    height: auto;
+    max-height: 10vh;
+}
+
+#progress {
+    width: 100%;
 }
 
 .playlist {
     display: grid;
-    grid-template-columns:
-        repeat(auto-fit, minmax(80px, 1fr));
+    grid-template-rows: repeat(2, minmax(80px, 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: 90px;
     position: fixed;
     top: 15%;
     right: -290px;
     width: clamp(180px, 25vw, 300px);
-    max-height: 77vh;
+    max-height: 50vh;
     overflow-x: auto;
     overflow-y: hidden;
     box-sizing: border-box;
     background-color: #49111c;
-    background-image: url("/IMG/Decorate/cosmos_388704365.jpeg");
+    background-image: url("/IMG/Back/cosmos_388704365.jpeg");
     border: 2px solid #cc3f41;
     transition: all .3s;
+    z-index: 100;
 }
 
 .track {
@@ -180,6 +268,7 @@ main {
     animation: spin 7s linear infinite;
 }
 
+
 @keyframes spin {
     from {
         transform: rotate(0deg);
@@ -217,11 +306,15 @@ main {
     right: 0;
 }
 
-.fondo--img:nth-child(3) {
+.intro--section {
+    position: relative;
+}
+
+.intro--section>.fondo--img {
     width: 12%;
     position: absolute;
     left: 0;
-    top: 15%;
+    top: 10%;
 }
 
 /*
@@ -254,9 +347,15 @@ main {
 .intro--section>.intro--text {
     width: 70%;
     margin: auto;
+    margin-top: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.intro--section>.intro--text2 {
     margin-top: 15%;
     margin-bottom: 10%;
-    font-size: 1.4em
+    font-weight: normal;
 }
 
 .container {
@@ -311,7 +410,7 @@ main {
     width: 100vw;
     height: 100dvh;
     inset: 0;
-    background: #2c070c44;
+    background: #110102aa;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -344,6 +443,7 @@ main {
     transform: scale(.8);
     transition: .3s;
     display: block;
+    will-change:transform,opacity;
 
 }
 
@@ -376,6 +476,14 @@ main {
     box-sizing: border-box;
 }
 
+.author--title {
+    font-size: 1.6rem;
+}
+
+.author--text {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
 .author--pics {
     display: flex;
     justify-content: space-between;
@@ -385,6 +493,7 @@ main {
     background-color: #2c070c;
     padding: 2%;
     gap: 1px;
+    margin-top: 10%;
 }
 
 .author--pic {
@@ -423,9 +532,14 @@ hr {
     width: 50%;
 }
 
-.footer-text {
+.footer--text {
     text-align: center;
     text-wrap: pretty;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.footer--redes {
+    font-size: clamp(.9rem, 1.5vw, 1rem);
 }
 
 .footer-div {
@@ -447,6 +561,7 @@ hr {
     text-decoration: none;
     color: inherit;
 }
+
 /** Seccion "Copied" en el footer*/
 .copied-toast {
     position: fixed;
@@ -458,43 +573,50 @@ hr {
     padding: 10px 15px;
     border-radius: 6px;
 }
+
 /*!==================================*/
 /*!Seccion swiper INDEX2.html*/
 /*!==================================*/
 .swiper {
-    width: 95%; /*Seccion de abajo del swiper (INDEX2)*/
+    width: 95%;
+    /*Seccion de abajo del swiper (INDEX2)*/
     height: 300px;
     margin-left: auto;
     margin-right: auto;
-    box-sizing:border-box;
-    overflow-y:hidden;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    user-select: none;
 }
 
 .swiper-slide {
     background-size: cover;
     background-position: center;
 }
+
 /*Seccion arriba slider*/
 .mySwiper2 {
     height: 80%;
-    width:80%;
-    box-sizing:border-box;
-    overflow-y:hidden
+    width: 80%;
+    box-sizing: border-box;
+    overflow-y: hidden
 }
-.mySwiper2 img{
+
+.mySwiper2 img {
     height: 120px;
     max-height: 500px;
     margin: 1%;
 
 }
+
 .mySwiper {
     height: 20%;
     box-sizing: border-box;
     padding: 10px 0;
 }
-.mySwiper img{
-    max-height:150px;
-    object-fit:contain;
+
+.mySwiper img {
+    max-height: 150px;
+    object-fit: contain;
 }
 
 .mySwiper .swiper-slide {
@@ -513,6 +635,97 @@ hr {
     height: 100%;
     object-fit: cover;
 }
+
+.mySwiper3 {
+    height: 90dvh;
+    width: 80%;
+    box-sizing: border-box;
+    overflow-y: hidden;
+    margin-top: 15%;
+    padding-bottom: 5% !important;
+}
+
+
+.swiper-slide3 {
+    text-align: center;
+    font-size: 1.1rem;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 0;
+}
+
+.swiper-slide3 img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 /*!==================================*/
 /*! FIN SECCION SWIPER INDEX.HTML*/
 /*!==================================*/
+
+.music-warning {
+    position: fixed;
+    top: 10%;
+    right: 20px;
+    padding: 12px 20px;
+    background:
+        rgba(73,
+            17,
+            28,
+            .9);
+    border: 2px solid #cc3f41;
+    color: white;
+    border-radius:
+        12px;
+    font-size:
+        clamp(.8rem,
+            1vw,
+            1rem);
+    z-index: 999;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: musicToast 9s linear;
+    backdrop-filter: blur(10px);
+}
+
+@keyframes musicToast {
+    0% {
+        opacity: 0;
+        transform:
+            translateY(20px);
+    }
+
+    15% {
+        opacity: 1;
+        transform:
+            translateY(0px);
+    }
+
+    30% {
+        transform: translateY(15px);
+    }
+
+    45% {
+        transform: translateY(0px);
+    }
+
+    60% {
+        transform: translateY(10px);
+    }
+
+    80% {
+        transform: translateY(0px);
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
